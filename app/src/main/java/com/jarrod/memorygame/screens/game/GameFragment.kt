@@ -58,7 +58,8 @@ class GameFragment : Fragment() {
         val rvCards = binding.rvCards
 
         rvCards.adapter = feedAdapter
-        rvCards.layoutManager = GridLayoutManager(context, 4)
+
+        rvCards.layoutManager = GridLayoutManager(context, prefs.getDifficut().toInt())
         LinearSnapHelper().attachToRecyclerView(rvCards)
         cardsViewModel.cardsList.observe(
             viewLifecycleOwner

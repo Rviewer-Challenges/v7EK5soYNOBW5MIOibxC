@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.jarrod.memorygame.screens.GameFragment"
+        android:name="com.jarrod.memorygame.screens.game.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
 </navigation>

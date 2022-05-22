@@ -4,25 +4,50 @@ import com.jarrod.memorygame.models.Cards
 
 object Hiragana {
     val hiraganaCards = mutableListOf<Cards>(
-        Cards("", "apple", "あ"),
-        Cards("", "orange", "お"),
-        Cards("", "banana", "ば"),
-        Cards("", "cherry", "ち"),
+        Cards("", "あめ", "Ame", "あ"),
+        Cards("", "いえ", "Ie", "い"),
+        Cards("", "うた", "Uta", "う"),
+        Cards("", "え", "Eigo", "え"),
+        Cards("", "おおきい", "Oka", "お"),
 
-        Cards("", "grape", "ぎ"),
-        Cards("", "lemon", "れ"),
-        Cards("", "melon", "め"),
-        Cards("", "peach", "ぱ"),
+        Cards("", "か", "Ka", "か"),
+        Cards("", "き", "Ki", "き"),
+        Cards("", "く", "Ku", "く"),
+        Cards("", "け", "Ke", "け"),
+        Cards("", "こ", "Ko", "こ"),
 
-        Cards("", "pineapple", "ぴ"),
-        Cards("", "strawberry", "す"),
-        Cards("", "watermelon", "わ"),
-        Cards("", "apple", "あ"),
+        Cards("", "さ", "Sa", "さ"),
+        Cards("", "し", "Shi", "し"),
+        Cards("", "す", "Su", "す"),
+        Cards("", "せ", "Se", "せ"),
+        Cards("", "そ", "So", "そ"),
 
-        Cards("", "orange", "お"),
-        Cards("", "banana", "ば"),
-        Cards("", "cherry", "ち"),
-        Cards("", "grape", "ぎ"),
+        Cards("", "た", "Ta", "た"),
+        Cards("", "ち", "Chi", "ち"),
+        Cards("", "つ", "Tu", "つ"),
+        Cards("", "て", "Te", "て"),
+        Cards("", "と", "To", "と"),
 
+        Cards("", "な", "Na", "な"),
+        Cards("", "に", "Ni", "に"),
+        Cards("", "ぬ", "Nu", "ぬ"),
+        Cards("", "ね", "Ne", "ね"),
+        Cards("", "の", "No", "の"),
+
+        Cards("", "は", "Ha", "は"),
+        Cards("", "ひ", "Hi", "ひ"),
+        Cards("", "ふ", "Fu", "ふ"),
+        Cards("", "へ", "He", "へ"),
+        Cards("", "ほ", "Ho", "ほ"),
+
+        Cards("", "ま", "Ma", "ま"),
+        Cards("", "み", "Mi", "み"),
+        Cards("", "む", "Mu", "む"),
+        Cards("", "め", "Me", "め"),
+        Cards("", "も", "Mo", "も"),
+
+        Cards("", "や", "Ya", "や"),
+        Cards("", "ゆ", "Yu", "ゆ"),
+        Cards("", "よ", "Yo", "よ"),
     )
 }

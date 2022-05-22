@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/rodri/AndroidStudioProjects/MemoryGame/app/src/main/res/drawable/shape_button.xml" value="0.127" />
         <entry key="..\:/Users/rodri/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/activity_main.xml" value="0.22735507246376813" />
+        <entry key="..\:/Users/rodri/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/fragment_dificult.xml" value="0.15052083333333333" />
         <entry key="..\:/Users/rodri/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/fragment_game.xml" value="0.22735507246376813" />
+        <entry key="..\:/Users/rodri/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/fragment_menu.xml" value="0.15052083333333333" />
         <entry key="..\:/Users/rodri/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/fragment_splash.xml" value="0.22735507246376813" />
         <entry key="..\:/Users/rodri/AndroidStudioProjects/MemoryGame/app/src/main/res/layout/layout_card.xml" value="0.264" />
       </map>

@@ -4,6 +4,7 @@
     package="com.jarrod.memorygame">
 
     <application
+        android:name=".prefs.UserApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

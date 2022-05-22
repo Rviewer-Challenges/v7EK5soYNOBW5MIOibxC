@@ -3,4 +3,9 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="test">test</string>
+    <string name="hiragana">Hiragana</string>
+    <string name="katakana">Katakana</string>
+    <string name="hard">Hard</string>
+    <string name="medium">Medium</string>
+    <string name="easy">Easy</string>
 </resources>

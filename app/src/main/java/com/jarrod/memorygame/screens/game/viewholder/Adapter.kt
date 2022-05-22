@@ -14,7 +14,7 @@ import com.jarrod.memorygame.models.Cards
 class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     val elementList:MutableList<Cards> = mutableListOf()
-    private var onFeedItemClickListener: ((feed: Cards) -> Unit)? = null
+    private var oncardItemClickListener: ((card: Cards) -> Unit)? = null
 
     fun addAll(newElementList:MutableList<Cards>){
         elementList.clear()
@@ -22,8 +22,8 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun setOnFeedItemClickListener(onFeedItemClickListener: ((feed: Cards) -> Unit)?) {
-        this.onFeedItemClickListener = onFeedItemClickListener
+    fun setOncardItemClickListener(onCardItemClickListener: ((card: Cards) -> Unit)?) {
+        this.oncardItemClickListener = onCardItemClickListener
     }
 
 
@@ -38,58 +38,55 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
 
-        fun bind(feed: Cards) {
-
-
-            binding.tvKana.text = feed.kana
-            binding.tvName.text = feed.nameImg
+        fun bind(card: Cards ) {
+            binding.tvKana.text = card.kana
+            binding.tvName.text = card.nameImg
             binding.imgBack.setImageResource(R.drawable.ic_baseline_all_inclusive_24)
-
-            var scale = this.view.context.resources.displayMetrics.density
-            var isFront = true
-
-            binding.cardFront.cameraDistance = 8000 * scale
-            binding.cardBack.cameraDistance = 8000 * scale
-
-            var front_anim: AnimatorSet = AnimatorInflater.loadAnimator(
-                this.view.context,
-                R.animator.front_animator
-            ) as AnimatorSet
-            var back_anim: AnimatorSet = AnimatorInflater.loadAnimator(
-                this.view.context,
-                R.animator.back_animator
-            ) as AnimatorSet
-
-
-            binding.cardBack.setOnClickListener {
-                if (isFront){
-
-                    front_anim.setTarget(binding.cardFront)
-                    back_anim.setTarget(binding.cardBack)
-                    front_anim.start()
-                    back_anim.start()
-
-                    isFront = false
-                }else {
-
-                    front_anim.setTarget(binding.cardBack)
-                    back_anim.setTarget(binding.cardFront)
-                    back_anim.start()
-                    front_anim.start()
-
-                    isFront = true
-                }
-
-            }
-
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        var isFront = true
+
         holder.bind(elementList[position])
         holder.itemView.setOnClickListener {
-            onFeedItemClickListener?.invoke(elementList[position])
+            oncardItemClickListener?.invoke(elementList[position])
+
+            var scale = holder.view.context.resources.displayMetrics.density
+
+            holder.binding.cardFront.cameraDistance = 8000 * scale
+            holder.binding.cardBack.cameraDistance = 8000 * scale
+
+            var front_anim: AnimatorSet = AnimatorInflater.loadAnimator(
+                holder.view.context,
+                R.animator.front_animator
+            ) as AnimatorSet
+            var back_anim: AnimatorSet = AnimatorInflater.loadAnimator(
+                holder.view.context,
+                R.animator.back_animator
+            ) as AnimatorSet
+
+            if (isFront){
+
+                front_anim.setTarget(holder.binding.cardFront)
+                back_anim.setTarget(holder.binding.cardBack)
+                front_anim.start()
+                back_anim.start()
+
+                isFront = false
+            }else {
+
+                front_anim.setTarget(holder.binding.cardBack)
+                back_anim.setTarget(holder.binding.cardFront)
+                back_anim.start()
+                front_anim.start()
+
+                isFront = true
+            }
         }
+
+
+
     }
 
     override fun getItemCount(): Int {

@@ -11,12 +11,30 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_splashFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
+            android:id="@+id/action_splashFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.jarrod.memorygame.screens.game.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.jarrod.memorygame.screens.menu_home.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_dificultFragment"
+            app:destination="@id/dificultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dificultFragment"
+        android:name="com.jarrod.memorygame.screens.dificult.DificultFragment"
+        android:label="fragment_dificult"
+        tools:layout="@layout/fragment_dificult" >
+        <action
+            android:id="@+id/action_dificultFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
 </navigation>

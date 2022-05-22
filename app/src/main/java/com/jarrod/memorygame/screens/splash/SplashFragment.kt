@@ -40,7 +40,7 @@ class SplashFragment : Fragment() {
         Handler(Looper.myLooper()!!).postDelayed({
             navController = Navigation.findNavController(view)
 
-            navController.navigate(R.id.action_splashFragment_to_gameFragment)
+            navController.navigate(R.id.action_splashFragment_to_menuFragment)
         }, 2000)
     }
 

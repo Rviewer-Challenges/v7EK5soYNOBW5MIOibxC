@@ -7,14 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.jarrod.memorygame.R
+import com.jarrod.memorygame.data.source.Temp
 import com.jarrod.memorygame.databinding.FragmentGameBinding
 import com.jarrod.memorygame.databinding.FragmentSplashBinding
 import com.jarrod.memorygame.models.Cards
+import com.jarrod.memorygame.prefs.UserApplication.Companion.prefs
 import com.jarrod.memorygame.screens.game.viewholder.Adapter
 import com.jarrod.memorygame.screens.game.viewholder.ViewModel
 
@@ -35,6 +38,8 @@ class GameFragment : Fragment() {
 
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +52,8 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Toast.makeText(context, prefs.getDifficut().toString() , Toast.LENGTH_SHORT).show()
 
         val rvCards = binding.rvCards
 
@@ -61,9 +68,10 @@ class GameFragment : Fragment() {
         cardsViewModel.updateCards()
 
 
-        feedAdapter.setOnFeedItemClickListener {
-
+        feedAdapter.setOncardItemClickListener {
+            Toast.makeText(context, "Clicked " + it.kana, Toast.LENGTH_SHORT).show()
         }
+
 
 
     }

@@ -9,59 +9,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.dificult.DificultFragment">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnEasy"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
 
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/easy"
-        app:cornerRadius="30dp"
-        android:textSize="20sp"
-        app:iconGravity="top"
 
-        app:icon="@drawable/ic_baseline_easy"
-        app:iconSize="50dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMedium"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEasy"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
 
-        android:layout_margin="10dp"
-        app:iconGravity="top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/medium"
-        app:cornerRadius="30dp"
-        android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/easy"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:cornerRadius="30dp"
+                app:icon="@drawable/ic_baseline_easy"
 
-        app:icon="@drawable/ic_baseline_medium"
-        app:iconSize="50dp" />
+                app:iconGravity="top"
+                app:iconSize="50dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnHard"
-        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMedium"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
 
-        android:layout_margin="10dp"
-        app:iconGravity="top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hard"
-        app:cornerRadius="30dp"
-        android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/medium"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:cornerRadius="30dp"
+                app:icon="@drawable/ic_baseline_medium"
 
-        app:icon="@drawable/ic_baseline_hard"
-        app:iconSize="50dp" />
+                app:iconGravity="top"
+                app:iconSize="50dp" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHard"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/hard"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:cornerRadius="30dp"
+                app:icon="@drawable/ic_baseline_hard"
+
+                app:iconGravity="top"
+                app:iconSize="50dp" />
 
 </LinearLayout>

@@ -13,6 +13,7 @@ import com.jarrod.memorygame.data.source.Hiragana
 import com.jarrod.memorygame.data.source.Temp
 import com.jarrod.memorygame.databinding.FragmentDificultBinding
 import com.jarrod.memorygame.databinding.FragmentGameBinding
+import com.jarrod.memorygame.models.Cards
 import com.jarrod.memorygame.prefs.UserApplication.Companion.prefs
 
 class DificultFragment : Fragment() {
@@ -37,28 +38,44 @@ class DificultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(context, prefs.getTypeList(), Toast.LENGTH_SHORT).show()
+        val list = Hiragana.hiraganaCards//make katakana or hiragana list
 
-        Temp.gameCards = Hiragana.hiraganaCards//temp
 
         binding.btnEasy.setOnClickListener {
             navController = Navigation.findNavController(view)
 
             prefs.saveDifficut(0)
+            val numberOfElements = 16
+
+            val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
+
+            Temp.gameCards = randomElements as MutableList<Cards>
+
             navController.navigate(R.id.action_dificultFragment_to_gameFragment)
         }
 
         binding.btnMedium.setOnClickListener {
             navController = Navigation.findNavController(view)
-
             prefs.saveDifficut(1)
+            val numberOfElements = 24
+
+            val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
+
+            Temp.gameCards = randomElements as MutableList<Cards>
+
             navController.navigate(R.id.action_dificultFragment_to_gameFragment)
         }
 
         binding.btnHard.setOnClickListener {
             navController = Navigation.findNavController(view)
-
             prefs.saveDifficut(2)
+
+            val numberOfElements = 30
+
+            val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
+
+            Temp.gameCards = randomElements as MutableList<Cards>
+
             navController.navigate(R.id.action_dificultFragment_to_gameFragment)
         }
     }

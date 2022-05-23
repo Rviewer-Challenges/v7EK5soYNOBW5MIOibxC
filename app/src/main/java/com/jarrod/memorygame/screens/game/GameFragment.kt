@@ -70,9 +70,10 @@ class GameFragment : Fragment() {
 
 
         feedAdapter.setOncardItemClickListener {
-//            Toast.makeText(context, "Clicked " + it.kana, Toast.LENGTH_SHORT).show()
+            
         }
 
+        binding.chronometer.start()
 
 
     }

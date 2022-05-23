@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.get
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.jarrod.memorygame.R
@@ -18,6 +19,7 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     val elementList:MutableList<Cards> = mutableListOf()
     private var oncardItemClickListener: ((card: Cards) -> Unit)? = null
+    var listFlipped = mutableListOf<Int>()
 
     fun addAll(newElementList:MutableList<Cards>){
         elementList.clear()
@@ -42,27 +44,27 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
 
             if (prefs.getDifficult() == "easy") {
                 binding.cardBack.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    dimensionRatio = "4:8.5"
+                    dimensionRatio = "4:7.5"
                 }
 
                 binding.cardFront.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    dimensionRatio = "4:8.5"
+                    dimensionRatio = "4:7.5"
                 }
             }else if (prefs.getDifficult() == "medium") {
                 binding.cardBack.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    dimensionRatio = "4:5.5"
+                    dimensionRatio = "4:5"
                 }
 
                 binding.cardFront.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    dimensionRatio = "4:5.5"
+                    dimensionRatio = "4:5"
                 }
             } else {
                 binding.cardBack.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    dimensionRatio = "5:13"
+                    dimensionRatio = "5:11.5"
                 }
 
                 binding.cardFront.updateLayoutParams<ConstraintLayout.LayoutParams> {
-                    dimensionRatio = "5:13"
+                    dimensionRatio = "5:11.5"
                 }
             }
 
@@ -70,48 +72,90 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
 
             binding.tvKana.text = card.kana
             binding.tvName.text = card.nameImg
-            binding.imgBack.setImageResource(R.drawable.ic_baseline_all_inclusive_24)
+//            binding.imgBack.setImageResource(R.drawable.ic_baseline_all_inclusive_24)
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var isFront = true
-
         holder.bind(elementList[position])
         holder.itemView.setOnClickListener {
             oncardItemClickListener?.invoke(elementList[position])
 
-            var scale = holder.view.context.resources.displayMetrics.density
+            val scale = holder.view.context.resources.displayMetrics.density
 
             holder.binding.cardFront.cameraDistance = 8000 * scale
             holder.binding.cardBack.cameraDistance = 8000 * scale
 
-            var front_anim: AnimatorSet = AnimatorInflater.loadAnimator(
+            val front_anim: AnimatorSet = AnimatorInflater.loadAnimator(
                 holder.view.context,
                 R.animator.front_animator
             ) as AnimatorSet
-            var back_anim: AnimatorSet = AnimatorInflater.loadAnimator(
+            val back_anim: AnimatorSet = AnimatorInflater.loadAnimator(
                 holder.view.context,
                 R.animator.back_animator
             ) as AnimatorSet
 
-            if (isFront){
+
+            if (elementList[position].isFlipped && listFlipped.size == 2 ){
+                front_anim.setTarget(holder.binding.cardBack)
+                back_anim.setTarget(holder.binding.cardFront)
+                back_anim.start()
+                front_anim.start()
+            }
+
+            if (!elementList[position].isFlipped and (listFlipped.size<2)) {
 
                 front_anim.setTarget(holder.binding.cardFront)
                 back_anim.setTarget(holder.binding.cardBack)
                 front_anim.start()
                 back_anim.start()
+                elementList[position].isFlipped = true
+                listFlipped.add(position)
 
-                isFront = false
-            }else {
+                if (listFlipped.size == 2){
+                    if (elementList[listFlipped[0]].nameImg == elementList[listFlipped[1]].nameImg){
+                        Toast.makeText(holder.view.context, "Correct", Toast.LENGTH_SHORT).show()
 
-                front_anim.setTarget(holder.binding.cardBack)
-                back_anim.setTarget(holder.binding.cardFront)
-                back_anim.start()
-                front_anim.start()
+                    //    listFlipped.clear()
+                    }
+                    else {
+                        Toast.makeText(holder.view.context, "Incorrect", Toast.LENGTH_SHORT).show()
 
-                isFront = true
+
+                        holder.itemView.postDelayed({
+//                            holder.bind(elementList[listFlipped[0]])
+                            val rvView = holder.view.parent as RecyclerView
+                            rvView.get(listFlipped[0]).performClick()
+
+//                            oncardItemClickListener?.invoke(elementList[listFlipped[0]])
+
+                            front_anim.setTarget(holder.binding.cardBack)
+                            back_anim.setTarget(holder.binding.cardFront)
+                            back_anim.start()
+                            front_anim.start()
+                            elementList[position].isFlipped = false
+                            elementList[listFlipped[0]].isFlipped = false
+                            listFlipped.clear()
+                        }, 2000)
+
+
+                    }
+//                    front_anim.setTarget(holder.binding.cardBack)
+//                    back_anim.setTarget(holder.binding.cardFront)
+//                    back_anim.start()
+//                    front_anim.start()
+                }
             }
+
+
+//            else {
+//                front_anim.setTarget(holder.binding.cardBack)
+//                back_anim.setTarget(holder.binding.cardFront)
+//                back_anim.start()
+//                front_anim.start()
+//
+//                isFront = true
+//            }
         }
 
 

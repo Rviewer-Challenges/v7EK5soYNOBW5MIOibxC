@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.jarrod.memorygame.R
 import com.jarrod.memorygame.databinding.LayoutCardBinding
 import com.jarrod.memorygame.models.Cards
+import com.jarrod.memorygame.prefs.UserApplication.Companion.prefs
 
 class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
 
@@ -35,10 +38,36 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
 
     class ViewHolder( val view: View): RecyclerView.ViewHolder(view){
         val binding = LayoutCardBinding.bind(view)
-
-
-
         fun bind(card: Cards ) {
+
+            if (prefs.getDifficult() == "easy") {
+                binding.cardBack.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    dimensionRatio = "4:8.5"
+                }
+
+                binding.cardFront.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    dimensionRatio = "4:8.5"
+                }
+            }else if (prefs.getDifficult() == "medium") {
+                binding.cardBack.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    dimensionRatio = "4:5.5"
+                }
+
+                binding.cardFront.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    dimensionRatio = "4:5.5"
+                }
+            } else {
+                binding.cardBack.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    dimensionRatio = "5:13"
+                }
+
+                binding.cardFront.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                    dimensionRatio = "5:13"
+                }
+            }
+
+
+
             binding.tvKana.text = card.kana
             binding.tvName.text = card.nameImg
             binding.imgBack.setImageResource(R.drawable.ic_baseline_all_inclusive_24)

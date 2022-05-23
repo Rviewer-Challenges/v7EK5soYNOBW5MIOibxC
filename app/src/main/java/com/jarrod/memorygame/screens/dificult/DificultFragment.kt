@@ -44,7 +44,9 @@ class DificultFragment : Fragment() {
         binding.btnEasy.setOnClickListener {
             navController = Navigation.findNavController(view)
 
-            prefs.saveDifficut(4)
+            prefs.saveDifficult("easy")
+            prefs.saveDifficultColumns(4)
+
             val numberOfElements = 16
 
             val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
@@ -56,7 +58,9 @@ class DificultFragment : Fragment() {
 
         binding.btnMedium.setOnClickListener {
             navController = Navigation.findNavController(view)
-            prefs.saveDifficut(4)
+            prefs.saveDifficult("medium")
+            prefs.saveDifficultColumns(4)
+
             val numberOfElements = 24
 
             val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
@@ -68,7 +72,8 @@ class DificultFragment : Fragment() {
 
         binding.btnHard.setOnClickListener {
             navController = Navigation.findNavController(view)
-            prefs.saveDifficut(5)
+            prefs.saveDifficult("hard")
+            prefs.saveDifficultColumns(6)
 
             val numberOfElements = 30
 

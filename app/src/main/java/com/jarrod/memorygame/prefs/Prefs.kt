@@ -6,6 +6,7 @@ class Prefs(val context: Context) {
     val SHARED_PREFERENCES = "prefs"
 
     val SHARED_LIST = "list"
+    val SHARED_DIFFICULT_COLUMNS = "difficult_columns"
     val SHARED_DIFFICULT = "difficult"
 
 
@@ -20,11 +21,19 @@ class Prefs(val context: Context) {
         return storage.getString(SHARED_LIST, "")!!
     }
 
-    fun saveDifficut(dificult:Int){
-        storage.edit().putInt(SHARED_DIFFICULT, dificult).apply()
+    fun saveDifficultColumns(dificult:Int){
+        storage.edit().putInt(SHARED_DIFFICULT_COLUMNS, dificult).apply()
     }
 
-    fun getDifficut(): Int {
-        return storage.getInt(SHARED_DIFFICULT, 0)
+    fun getDifficultColumns(): Int {
+        return storage.getInt(SHARED_DIFFICULT_COLUMNS, 0)
+    }
+
+    fun saveDifficult(typeList:String){
+        storage.edit().putString(SHARED_DIFFICULT, typeList).apply()
+    }
+
+    fun getDifficult(): String{
+        return storage.getString(SHARED_DIFFICULT, "")!!
     }
 }

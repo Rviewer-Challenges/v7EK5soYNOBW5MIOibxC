@@ -53,13 +53,13 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Toast.makeText(context, prefs.getDifficut().toString() , Toast.LENGTH_SHORT).show()
+
 
         val rvCards = binding.rvCards
 
         rvCards.adapter = feedAdapter
 
-        rvCards.layoutManager = GridLayoutManager(context, prefs.getDifficut().toInt())
+        rvCards.layoutManager = GridLayoutManager(context, prefs.getDifficultColumns().toInt())
         LinearSnapHelper().attachToRecyclerView(rvCards)
         cardsViewModel.cardsList.observe(
             viewLifecycleOwner
@@ -70,7 +70,7 @@ class GameFragment : Fragment() {
 
 
         feedAdapter.setOncardItemClickListener {
-            Toast.makeText(context, "Clicked " + it.kana, Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "Clicked " + it.kana, Toast.LENGTH_SHORT).show()
         }
 
 

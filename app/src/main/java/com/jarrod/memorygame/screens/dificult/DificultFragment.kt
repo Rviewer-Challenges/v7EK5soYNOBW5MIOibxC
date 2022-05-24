@@ -47,11 +47,11 @@ class DificultFragment : Fragment() {
             prefs.saveDifficult("easy")
             prefs.saveDifficultColumns(4)
 
-            val numberOfElements = 16
+            val numberOfElements = 8
 
             val randomElements = list.asSequence().shuffled().take(numberOfElements).toList()
 
-            Temp.gameCards = randomElements as MutableList<Cards>
+            Temp.gameCards = (randomElements + randomElements) as MutableList<Cards>
 
             navController.navigate(R.id.action_dificultFragment_to_gameFragment)
         }

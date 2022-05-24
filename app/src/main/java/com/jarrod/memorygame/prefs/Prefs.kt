@@ -8,6 +8,7 @@ class Prefs(val context: Context) {
     val SHARED_LIST = "list"
     val SHARED_DIFFICULT_COLUMNS = "difficult_columns"
     val SHARED_DIFFICULT = "difficult"
+    val SHARED_MOVES = "move"
 
 
 
@@ -35,5 +36,13 @@ class Prefs(val context: Context) {
 
     fun getDifficult(): String{
         return storage.getString(SHARED_DIFFICULT, "")!!
+    }
+
+    fun saveMoves(dificult:Int){
+        storage.edit().putInt(SHARED_MOVES, dificult).apply()
+    }
+
+    fun getMoves(): Int {
+        return storage.getInt(SHARED_MOVES, 0)
     }
 }

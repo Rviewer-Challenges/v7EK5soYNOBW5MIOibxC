@@ -1,21 +1,16 @@
 package com.jarrod.memorygame.screens.game
 
-import android.animation.AnimatorInflater
-import android.animation.AnimatorSet
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import com.jarrod.memorygame.R
-import com.jarrod.memorygame.data.source.Temp
 import com.jarrod.memorygame.databinding.FragmentGameBinding
-import com.jarrod.memorygame.databinding.FragmentSplashBinding
 import com.jarrod.memorygame.models.Cards
 import com.jarrod.memorygame.prefs.UserApplication.Companion.prefs
 import com.jarrod.memorygame.screens.game.viewholder.Adapter
@@ -25,16 +20,20 @@ class GameFragment : Fragment() {
     private var _binding: FragmentGameBinding? = null
     private val binding get() = _binding!!
     private lateinit var navController: NavController
-
-//    lateinit var front_anim: AnimatorSet
-//    lateinit var back_anim: AnimatorSet
-//    var isFront =true
-
+    private var firstClick = true
     private val feedAdapter = Adapter()
     private val cardsViewModel: ViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        prefs.saveMoves(0)
+        cardsViewModel.updateMoves()
+
+        cardsViewModel.moves.observe(this, Observer {
+            binding.tvMoves.text = it.toString()
+        })
+
+
 
     }
 
@@ -53,7 +52,7 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding.tvMoves.text = prefs.getMoves().toString()
 
         val rvCards = binding.rvCards
 
@@ -70,10 +69,17 @@ class GameFragment : Fragment() {
 
 
         feedAdapter.setOncardItemClickListener {
-            
+            if (firstClick){
+                binding.chronometer.start()
+            }
+
+
+            view.postDelayed({
+                cardsViewModel.updateMoves()
+            },500)
+            cardsViewModel.updateMoves()
         }
 
-        binding.chronometer.start()
 
 
     }

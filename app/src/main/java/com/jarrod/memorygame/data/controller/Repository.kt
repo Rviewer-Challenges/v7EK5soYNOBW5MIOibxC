@@ -10,4 +10,10 @@ class Repository(val network : Controller) {
             emit(network.getAllCardsHiragana())
         }
     }
+
+    fun getMoves(): Flow<String> {
+        return flow {
+            emit(network.getMoves())
+        }
+    }
 }

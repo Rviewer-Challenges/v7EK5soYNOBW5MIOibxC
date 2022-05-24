@@ -21,9 +21,11 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
     private var oncardItemClickListener: ((card: Cards) -> Unit)? = null
     var listFlipped = mutableListOf<Int>()
 
+
     fun addAll(newElementList:MutableList<Cards>){
         elementList.clear()
         elementList.addAll(newElementList)
+        elementList.shuffle()
         notifyDataSetChanged()
     }
 
@@ -69,9 +71,9 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
             }
 
 
-
             binding.tvKana.text = card.kana
             binding.tvName.text = card.nameImg
+
 //            binding.imgBack.setImageResource(R.drawable.ic_baseline_all_inclusive_24)
         }
     }
@@ -96,27 +98,34 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
             ) as AnimatorSet
 
 
-            if (elementList[position].isFlipped && listFlipped.size == 2 ){
+
+            if (elementList[position].isFlipped > 0 && listFlipped.size == 2 ){
                 front_anim.setTarget(holder.binding.cardBack)
                 back_anim.setTarget(holder.binding.cardFront)
                 back_anim.start()
                 front_anim.start()
             }
 
-            if (!elementList[position].isFlipped and (listFlipped.size<2)) {
+            if (elementList[position].isFlipped < 2 && listFlipped.size<2) {
+
+                prefs.saveMoves(prefs.getMoves() + 1)
+                Toast.makeText(holder.view.context, "Moves: ${prefs.getMoves()}", Toast.LENGTH_SHORT).show()
+
 
                 front_anim.setTarget(holder.binding.cardFront)
                 back_anim.setTarget(holder.binding.cardBack)
                 front_anim.start()
                 back_anim.start()
-                elementList[position].isFlipped = true
+                elementList[position].isFlipped += 1
                 listFlipped.add(position)
 
                 if (listFlipped.size == 2){
-                    if (elementList[listFlipped[0]].nameImg == elementList[listFlipped[1]].nameImg){
+
+
+                    if (elementList[listFlipped[0]].kana == elementList[listFlipped[1]].kana){
                         Toast.makeText(holder.view.context, "Correct", Toast.LENGTH_SHORT).show()
 
-                    //    listFlipped.clear()
+                        listFlipped.clear()
                     }
                     else {
                         Toast.makeText(holder.view.context, "Incorrect", Toast.LENGTH_SHORT).show()
@@ -127,35 +136,22 @@ class Adapter(): RecyclerView.Adapter<Adapter.ViewHolder>() {
                             val rvView = holder.view.parent as RecyclerView
                             rvView.get(listFlipped[0]).performClick()
 
-//                            oncardItemClickListener?.invoke(elementList[listFlipped[0]])
 
                             front_anim.setTarget(holder.binding.cardBack)
                             back_anim.setTarget(holder.binding.cardFront)
                             back_anim.start()
                             front_anim.start()
-                            elementList[position].isFlipped = false
-                            elementList[listFlipped[0]].isFlipped = false
+                            elementList[position].isFlipped = 0
+                            elementList[listFlipped[0]].isFlipped = 0
                             listFlipped.clear()
                         }, 2000)
 
 
                     }
-//                    front_anim.setTarget(holder.binding.cardBack)
-//                    back_anim.setTarget(holder.binding.cardFront)
-//                    back_anim.start()
-//                    front_anim.start()
+
                 }
             }
 
-
-//            else {
-//                front_anim.setTarget(holder.binding.cardBack)
-//                back_anim.setTarget(holder.binding.cardFront)
-//                back_anim.start()
-//                front_anim.start()
-//
-//                isFront = true
-//            }
         }
 
 

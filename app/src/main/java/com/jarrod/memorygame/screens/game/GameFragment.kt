@@ -43,6 +43,7 @@ class GameFragment : Fragment() {
 
 
 
+
     }
 
 
@@ -79,6 +80,8 @@ class GameFragment : Fragment() {
         feedAdapter.setOncardItemClickListener {
             prefs.saveTime(binding.chronometer.text.toString())
             if (firstClick){
+
+
 //                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 //                    binding.chronometer.isCountDown = true
 //                }
@@ -87,14 +90,14 @@ class GameFragment : Fragment() {
                     if (binding.chronometer.text == "01:00"){
                         binding.chronometer.stop()
                         MaterialDialog(requireContext()).show {
-                            title(text = "We we we :c!")
+                            title(text = "We we we! :c")
                             navController = Navigation.findNavController(view)
 
                             navController.navigate(R.id.action_gameFragment_to_menuFragment)
 
 
 
-                            message(text = "You loose, with ${prefs.getMoves()} move(s)")
+                            message(text = "Time is up, you lost with ${prefs.getMoves()} move(s)")
                         }
                     }
 

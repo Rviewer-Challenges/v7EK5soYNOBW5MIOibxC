@@ -69,6 +69,7 @@ class GameFragment : Fragment() {
 
 
         feedAdapter.setOncardItemClickListener {
+            prefs.saveTime(binding.chronometer.text.toString())
             if (firstClick){
                 binding.chronometer.start()
             }

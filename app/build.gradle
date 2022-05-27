@@ -61,4 +61,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+
+    //Material Dialog
+    implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    implementation 'com.afollestad.material-dialogs:lifecycle:3.3.0'
 }

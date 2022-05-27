@@ -1,15 +1,23 @@
 package com.jarrod.memorygame.screens.game
 
+import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Chronometer
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.afollestad.materialdialogs.MaterialDialog
+import com.jarrod.memorygame.R
 import com.jarrod.memorygame.databinding.FragmentGameBinding
 import com.jarrod.memorygame.models.Cards
 import com.jarrod.memorygame.prefs.UserApplication.Companion.prefs
@@ -71,6 +79,29 @@ class GameFragment : Fragment() {
         feedAdapter.setOncardItemClickListener {
             prefs.saveTime(binding.chronometer.text.toString())
             if (firstClick){
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//                    binding.chronometer.isCountDown = true
+//                }
+//                binding.chronometer.base = SystemClock.elapsedRealtime() - (1 * 60000 + 0 * 1000)
+                binding.chronometer.onChronometerTickListener = Chronometer.OnChronometerTickListener {
+                    if (binding.chronometer.text == "01:00"){
+                        binding.chronometer.stop()
+                        MaterialDialog(requireContext()).show {
+                            title(text = "We we we :c!")
+                            navController = Navigation.findNavController(view)
+
+                            navController.navigate(R.id.action_gameFragment_to_menuFragment)
+
+
+
+                            message(text = "You loose, with ${prefs.getMoves()} move(s)")
+                        }
+                    }
+
+
+
+                }
+
                 binding.chronometer.start()
             }
 
@@ -84,4 +115,7 @@ class GameFragment : Fragment() {
 
 
     }
+
+
+
 }

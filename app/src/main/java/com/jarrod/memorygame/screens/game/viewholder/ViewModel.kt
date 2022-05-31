@@ -13,10 +13,10 @@ import com.jarrod.memorygame.prefs.UserApplication.Companion.prefs
 
 class ViewModel: ViewModel(){
 
-    val repository = Repository(ControllerImp())
+    private val repository = Repository(ControllerImp())
     val cardsList = MutableLiveData<List<Cards>>()
     val moves = MutableLiveData<String>()
-
+    val cardsLeft = MutableLiveData<String>()
 
     fun updateCards() {
         repository.getAllCardsHiragana().onEach {
@@ -27,6 +27,12 @@ class ViewModel: ViewModel(){
     fun updateMoves() {
         repository.getMoves().onEach {
             moves.postValue(it)
+        }.launchIn(CoroutineScope(Dispatchers.IO))
+    }
+
+    fun updateCardsLeft(){
+        repository.getCardsLeft().onEach {
+            cardsLeft.postValue(it)
         }.launchIn(CoroutineScope(Dispatchers.IO))
     }
 }

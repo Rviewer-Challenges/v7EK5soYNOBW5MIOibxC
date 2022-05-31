@@ -12,4 +12,9 @@ class ControllerImp: Controller {
 
     override suspend fun getMoves(): String {
         return "Moves: ${prefs.getMoves()}"
-    }}
+    }
+
+    override suspend fun getCardsLeft(): String {
+        return "Left: ${prefs.getCardsLeft()}"
+    }
+}

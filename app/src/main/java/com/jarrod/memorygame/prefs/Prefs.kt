@@ -10,6 +10,7 @@ class Prefs(val context: Context) {
     val SHARED_DIFFICULT = "difficult"
     val SHARED_MOVES = "move"
     val SHARED_TIME = "time"
+    val SHARED_CARDSLEFT = "cardsleft"
 
     val storage = context.getSharedPreferences(SHARED_PREFERENCES, 0)
 
@@ -51,5 +52,13 @@ class Prefs(val context: Context) {
 
     fun getTime(): String{
         return storage.getString(SHARED_TIME, "")!!
+    }
+
+    fun saveCardsLeft(cardsLeft:Int){
+        storage.edit().putInt(SHARED_CARDSLEFT, cardsLeft).apply()
+    }
+
+    fun getCardsLeft(): Int {
+        return storage.getInt(SHARED_CARDSLEFT, 0)
     }
 }

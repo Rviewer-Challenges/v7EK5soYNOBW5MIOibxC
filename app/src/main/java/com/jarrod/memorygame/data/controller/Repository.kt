@@ -4,7 +4,7 @@ import com.jarrod.memorygame.models.Cards
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class Repository(val network : Controller) {
+class Repository(private val network : Controller) {
     fun getAllCardsHiragana(): Flow<List<Cards>> {
         return flow {
             emit(network.getAllCardsHiragana())
@@ -14,6 +14,12 @@ class Repository(val network : Controller) {
     fun getMoves(): Flow<String> {
         return flow {
             emit(network.getMoves())
+        }
+    }
+
+    fun getCardsLeft(): Flow<String> {
+        return flow {
+            emit(network.getCardsLeft())
         }
     }
 }

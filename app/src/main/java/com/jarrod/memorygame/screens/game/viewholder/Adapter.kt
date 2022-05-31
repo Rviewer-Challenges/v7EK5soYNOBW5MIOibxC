@@ -129,6 +129,8 @@ class Adapter() : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
 
                         if (elementList[listFlipped[0]].kana == elementList[listFlipped[1]].kana) {
+                            prefs.saveCardsLeft(prefs.getCardsLeft() - 2)
+
                             numMatched += 2
                             if (numMatched == elementList.size) {
                                 MaterialDialog(holder.view.context).show {

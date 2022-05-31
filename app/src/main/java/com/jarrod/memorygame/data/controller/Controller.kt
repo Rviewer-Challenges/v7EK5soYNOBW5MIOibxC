@@ -6,5 +6,6 @@ interface Controller {
     suspend fun getAllCardsHiragana(): List<Cards>
 
     suspend fun getMoves(): String
+    suspend fun getCardsLeft(): String
 
 }

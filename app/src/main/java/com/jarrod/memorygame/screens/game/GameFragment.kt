@@ -36,14 +36,15 @@ class GameFragment : Fragment() {
         super.onCreate(savedInstanceState)
         prefs.saveMoves(0)
         cardsViewModel.updateMoves()
+        cardsViewModel.updateCardsLeft()
 
         cardsViewModel.moves.observe(this, Observer {
             binding.tvMoves.text = it.toString()
         })
 
-
-
-
+        cardsViewModel.cardsLeft.observe(this, Observer {
+            binding.tvCards.text = it.toString()
+        })
     }
 
 
@@ -78,6 +79,7 @@ class GameFragment : Fragment() {
 
 
         feedAdapter.setOncardItemClickListener {
+
             prefs.saveTime(binding.chronometer.text.toString())
             if (firstClick){
 
@@ -111,6 +113,7 @@ class GameFragment : Fragment() {
 
             view.postDelayed({
                 cardsViewModel.updateMoves()
+                cardsViewModel.updateCardsLeft()
             },500)
             cardsViewModel.updateMoves()
         }

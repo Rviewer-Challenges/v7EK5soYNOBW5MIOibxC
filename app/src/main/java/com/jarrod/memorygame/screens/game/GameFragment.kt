@@ -115,6 +115,10 @@ class GameFragment : Fragment() {
             cardsViewModel.updateMoves()
         }
 
+        binding.btnBack.setOnClickListener {
+            navController = Navigation.findNavController(view)
+            navController.navigate(R.id.action_gameFragment_to_menuFragment)
+        }
 
 
     }

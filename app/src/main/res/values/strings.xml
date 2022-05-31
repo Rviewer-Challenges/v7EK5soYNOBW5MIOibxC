@@ -9,4 +9,6 @@
     <string name="medium">Medium</string>
     <string name="easy">Easy</string>
     <string name="moves">Moves: </string>
+    <string name="left">Left</string>
+    <string name="back">Back</string>
 </resources>

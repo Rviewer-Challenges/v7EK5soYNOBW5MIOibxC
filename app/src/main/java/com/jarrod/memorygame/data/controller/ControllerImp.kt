@@ -10,6 +10,10 @@ class ControllerImp: Controller {
         return Temp.gameCards
     }
 
+    override suspend fun getAllCardsKatakana(): List<Cards> {
+        return Temp.gameCards
+    }
+
     override suspend fun getMoves(): String {
         return "Moves: ${prefs.getMoves()}"
     }

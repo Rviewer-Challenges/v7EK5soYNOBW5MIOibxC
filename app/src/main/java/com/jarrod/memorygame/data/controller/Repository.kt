@@ -11,6 +11,12 @@ class Repository(private val network : Controller) {
         }
     }
 
+    fun getAllCardsKatakana(): Flow<List<Cards>> {
+        return flow {
+            emit(network.getAllCardsKatakana())
+        }
+    }
+
     fun getMoves(): Flow<String> {
         return flow {
             emit(network.getMoves())

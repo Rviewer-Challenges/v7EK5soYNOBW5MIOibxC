@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.jarrod.memorygame.R
 import com.jarrod.memorygame.data.source.Hiragana
+import com.jarrod.memorygame.data.source.Katakana
 import com.jarrod.memorygame.data.source.Temp
 import com.jarrod.memorygame.databinding.FragmentDificultBinding
 import com.jarrod.memorygame.databinding.FragmentGameBinding
@@ -38,7 +39,12 @@ class DificultFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val list = Hiragana.hiraganaCards//make katakana or hiragana list
+        var list: MutableList<Cards>
+        if (prefs.getTypeList() == "hiragana") {
+            list = Hiragana.hiraganaCards
+        } else {
+            list = Katakana.katakanaCards
+        }
 
 
         binding.btnEasy.setOnClickListener {

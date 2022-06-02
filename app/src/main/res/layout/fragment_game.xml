@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--We are going to use Constraintlayout-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideOneHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideFiveVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTwentyFiveVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideSeventyFiveVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <TextView
+        android:id="@+id/tvMoves"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/moves"
+        android:textSize="20sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideOneHorizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideTwentyFiveVertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvCards"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/left"
+        android:textSize="20sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/guideOneHorizontal"
+        app:layout_constraintEnd_toStartOf="@+id/chronometer"
+        app:layout_constraintStart_toStartOf="@+id/guideTwentyFiveVertical"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        android:gravity="center"
+        android:textSize="20sp"
+
+
+        app:layout_constraintBottom_toTopOf="@+id/guideOneHorizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideSeventyFiveVertical"
+        app:layout_constraintStart_toStartOf="@+id/guideFiveVertical"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnBack"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/back"
+        app:icon="@drawable/md_nav_back"
+        app:iconGravity="textTop"
+        app:iconPadding="0dp"
+        android:textAlignment="center"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideOneHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideSeventyFiveVertical"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCards"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/guideOneHorizontal"
+        tools:listitem="@layout/layout_card" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.menu_home.MenuFragment">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnHiragana"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+
+        android:layout_margin="10dp"
+        app:iconGravity="textTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hiragana"
+        app:cornerRadius="30dp"
+        android:textSize="20sp"
+
+        app:icon="@drawable/ic_hiragana"
+        app:iconSize="50dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnKatakana"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+        android:layout_width="wrap_content"
+
+        android:layout_margin="10dp"
+        app:iconGravity="textTop"
+        android:layout_height="wrap_content"
+        android:text="@string/katakana"
+        app:cornerRadius="30dp"
+        app:icon="@drawable/ic_katakana"
+        android:textSize="20sp"
+        app:iconSize="50dp"/>
+
+
+</LinearLayout>
